@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function() {
-	return view('isi.index');
+    return view('welcome');
 });
+Route::get('/pertanyaan', 'PertanyaanController@index');
 
-Route::get('/data-tables', function() {
-	return view('isi.data');
-});
+Route::get('/pertanyaan/create', 'PertanyaanController@create');
+
+Route::post('/pertanyaan', 'PertanyaanController@store');
+
+Route::get('/jawaban/{pertanyaan_id}', 'JawabanController@index');
+
+Route::post('/jawaban/{pertanyaan_id}', 'JawabanController@store');
