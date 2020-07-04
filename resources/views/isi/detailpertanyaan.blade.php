@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Daftar Jawaban')
+@section('title', 'Detail Pertanyaan')
 
 @push('css')
   <link rel="stylesheet" href="{{asset('/adminlte/plugins/select2/css/select2.min.css')}}">
@@ -15,10 +15,12 @@
 			<h3 class="card-title">Pertanyaan:</h3>
 		</div>
 		<div class="card-body">
-			{{$pertanyaan->isi}}
+			{{$data->isi}}
 		</div>
 		<div class="card-footer">
-			<p class="card-subtitle">Oleh: {{$pertanyaan->name}}</p>
+			<p class="card-subtitle">Oleh: {{$data->name}}</p>
+			<p class="card-subtitle">Dibuat: {{$data->created_at}}</p>
+			<p class="card-subtitle">Diubah: {{$data->updated_at}}</p>
 		</div>
 	</div>
 
@@ -46,23 +48,6 @@
 		  </tbody>
 		</table>
 	   </div>
-	  <form role="form" action="/jawaban/{{$id}}" method="POST">
-	  	@csrf
-	  	<input type="hidden" name="question_id" value="{{$id}}">
-	  	<div class="card-body">
-		  	<label>Tambah Jawaban</label>
-			<textarea class="form-control" id="isi" name="isi" rows="3" placeholder="Enter ..."></textarea>
-			<label>Nama Anda</label>
-	          <select class="form-control select2" id="nama" name="nama" style="width: 100%; height: 50px;">
-	            @foreach($pertanyaanAll as $key => $item)
-	          	<option value="{{$item->user_id}}">{{$item->name}}</option>
-	          	@endforeach
-	          </select>
-	  	</div>
-		<div class="card-footer">
-          	<button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-	  </form>
 	</div>
 
 @endsection

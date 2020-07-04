@@ -18,6 +18,9 @@
 		      <th>Judul</th>
 		      <th>Penanya</th>
 		      <th>Detail</th>
+		      <th>Jawaban</th>
+		      <th>Edit</th>
+		      <th>Delete</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -27,7 +30,20 @@
 		      <td>{{ $item->judul }}</td>
 		      <td>{{ $item->name }}</td>
 		      <td>
-		      	<a href="/jawaban/{{$item->id}}"><i class="fa fa-search"></i> Lihat Pertanyaan</a>
+		      	<a href="/pertanyaan/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
+		      </td>
+		      <td>
+		      	<a href="/jawaban/{{$item->id}}" class="btn btn-success btn-sm">Lihat</a>
+		      </td>
+		      <td>
+		      	<a href="/pertanyaan/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+		      </td>
+		      <td>
+		      	<form action="/pertanyaan/{{$item->id}}" method="POST">
+		      		@csrf
+		      		@method('DELETE')
+			      	<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+		      	</form>
 		      </td>
 		    </tr>
 		    @endforeach
